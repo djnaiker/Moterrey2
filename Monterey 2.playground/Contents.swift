@@ -10,7 +10,8 @@ enum Velocidades : Int{
     case apagado = 0, velocidadBaja = 20, velocidadMedia = 50, velocidadAlta = 120
     
     init (velocidadInicial : Velocidades){
-        self = velocidadInicial
+        //VelocidadAlta para que empieze por Apagado
+        self.velocidad = Velocidades(velocidadIncial: Velocidades.VelocidadAlta)
     }
     
 }
@@ -24,10 +25,8 @@ class Auto {
         velocidad = Velocidades.apagado
     }
     
-    func cambioDeVelocidad(var actual : Int ,  var velocidadEnCadena : String) -> (actual : Int ,nombre : String){
-        
-    
-     
+    func cambioDeVelocidad() -> (actual : Int ,nombre : String){
+        var velocidadEnCadena: string
         switch velocidad{
             
         case Velocidades.apagado:
@@ -51,12 +50,8 @@ class Auto {
             break
             
         }
-        
-        actual = velocidad.rawValue
-        
-        
-    
-        let resultado = (actual, velocidadEnCadena)
+
+        let resultado = (velocidad.rawValue, velocidadEnCadena)
         
         return resultado
        
@@ -65,14 +60,13 @@ class Auto {
     
 }
 
+  var a : Auto  = Auto();
 
 for (var i  = 0 ; i<20 ; i++){
     
-    var a : Auto  = Auto();
+    let result = a.cambioDeVelocidad()
     
-    let result = a.cambioDeVelocidad(0, velocidadEnCadena: "")
-    
-    print(result.0 , result.1)
+    print("\(i+1). \(result.actual), \(result.velocidadEnCadena)")
 
     
 }
